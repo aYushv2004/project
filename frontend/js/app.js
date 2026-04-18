@@ -63,7 +63,12 @@ async function compute() {
         $('#result-power').textContent = d.power.toFixed(1);
         $('#metric-power').textContent = d.power.toFixed(1);
         const badge = $('#result-badge');
-        badge.textContent = d.tier.toUpperCase();
+        const tierStrings = {
+            'eco': 'ECO MODE (Cost & Health Optimized)',
+            'balanced': 'BALANCED (Steady & Reliable)',
+            'rapid': 'RAPID CHARGE (Urgent Priority)'
+        };
+        badge.textContent = tierStrings[d.tier] || d.tier.toUpperCase();
         badge.className   = 'result-badge badge-' + d.tier;
     } catch (e) {
         console.error('Compute error:', e);

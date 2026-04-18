@@ -36,7 +36,7 @@
             <div class="hero-left">
                 <h1 class="hero-title">Evora</h1>
                 <p class="hero-tagline">Intelligent EV Charging.<br>Powered by Logic.</p>
-                <p class="hero-stats">22 kW max output · 20 fuzzy rules · real-time inference</p>
+                <p class="hero-stats">22 kW max output · 20 fuzzy rules · real-time inference.</p>
                 <a href="#scheduler" class="hero-cta">Schedule Now</a>
             </div>
         </div>
@@ -46,16 +46,16 @@
     <section class="section features-section">
         <div class="features-row">
             <div class="feature glass-panel">
-                <h3 class="feature-title">Adaptive Scheduling</h3>
-                <p class="feature-text">Adjusts charging power dynamically based on current grid conditions, battery state, and how soon you need the car.</p>
+                <h3 class="feature-title">Dynamic Adaptive Scheduling</h3>
+                <p class="feature-text">Evora intelligently adjusts your charging power in real-time. By analyzing grid conditions, current battery levels, and your exact departure time, it ensures your vehicle is perfectly charged exactly when you need it—without wasting energy.</p>
             </div>
             <div class="feature glass-panel">
-                <h3 class="feature-title">Tariff Optimization</h3>
-                <p class="feature-text">Finds the cheapest windows to charge by factoring in time-of-use electricity pricing and demand patterns.</p>
+                <h3 class="feature-title">Smart Tariff Optimization</h3>
+                <p class="feature-text">Never overpay for electricity again. Evora automatically identifies the most cost-effective charging windows by analyzing time-of-use pricing and grid demand, significantly reducing your daily energy bills.</p>
             </div>
             <div class="feature glass-panel">
-                <h3 class="feature-title">Battery Preservation</h3>
-                <p class="feature-text">Manages charge rates to extend battery lifespan — no unnecessary fast-charging when there's time to spare.</p>
+                <h3 class="feature-title">Proactive Battery Preservation</h3>
+                <p class="feature-text">Protect your EV's most valuable asset. Evora deliberately manages charge rates to extend your battery's lifespan, opting for gentle charging cycles when time permits and avoiding unnecessary, degrading fast-charges.</p>
             </div>
         </div>
     </section>
@@ -66,24 +66,24 @@
 
         <div class="slider-grid">
             <div class="input-group glass-panel">
-                <label class="input-label" for="soc-slider">State of Charge</label>
+                <label class="input-label" for="soc-slider">Current Battery State (SOC)</label>
                 <input type="range" id="soc-slider" min="0" max="100" value="35" class="slider">
                 <div class="input-readout"><span id="soc-value">35</span><span class="input-unit">%</span></div>
             </div>
             <div class="input-group glass-panel">
-                <label class="input-label" for="price-slider">Grid Tariff</label>
+                <label class="input-label" for="price-slider">Live Grid Tariff</label>
                 <input type="range" id="price-slider" min="0" max="50" value="20" class="slider">
-                <div class="input-readout"><span id="price-value">20</span><span class="input-unit">¢/kWh</span></div>
+                <div class="input-readout"><span id="price-value">20</span><span class="input-unit">$/kWh</span></div>
             </div>
             <div class="input-group glass-panel">
-                <label class="input-label" for="time-slider">Time to Departure</label>
+                <label class="input-label" for="time-slider">Time Until Departure</label>
                 <input type="range" id="time-slider" min="0" max="24" value="8" class="slider">
                 <div class="input-readout"><span id="time-value">8</span><span class="input-unit">hours</span></div>
             </div>
         </div>
 
         <div class="result glass-panel" id="result-card">
-            <p class="result-label">Recommended Output</p>
+            <p class="result-label">Recommended Power Output</p>
             <p class="result-value" id="result-power">—</p>
             <p class="result-unit">kW</p>
             <span class="result-badge" id="result-badge">—</span>
@@ -112,21 +112,14 @@
 
     <!-- ═══════ ABOUT ═══════ -->
     <section id="about" class="section about-section">
-        <h2 class="section-heading">How It Works</h2>
+        <h2 class="section-heading">How Evora Thinks</h2>
 
         <div class="about-prose">
             <p>
-                Evora uses a Mamdani-type fuzzy inference engine to figure out the best charging
-                power for your EV. It looks at three things: how much charge your battery has,
-                what electricity costs right now, and when you need to leave. From that, it
-                recommends a power level between 0 and 22 kW.
+                Evora isn't just a scheduler; it's a smart decision engine. It constantly evaluates three critical factors: your battery's current state of charge, real-time electricity costs, and your scheduled departure time. By balancing these variables, it instantly recommends the perfect power output—ranging from a gentle, cost-saving trickle to a rapid 22 kW burst.
             </p>
             <p>
-                The engine runs 20 fuzzy rules on triangular membership functions. Each input
-                gets split into three categories (like Low / Medium / High), and the rules handle
-                everything from "battery is nearly dead and you're leaving in an hour" to "battery
-                is full and electricity is expensive — don't bother." Centroid defuzzification
-                turns the fuzzy result back into a concrete number.
+                Under the hood, Evora utilizes a sophisticated Mamdani-type fuzzy inference engine. Instead of rigid programming, it processes data through 20 nuanced logical scenarios. Whether you have a nearly empty battery with an urgent departure, or a full battery during peak pricing hours, Evora calculates the mathematically optimal power output in milliseconds.
             </p>
         </div>
 
@@ -135,20 +128,23 @@
             <table class="spec-table glass-panel">
                 <thead><tr><th>Variable</th><th>Range</th><th>Terms</th><th>Role</th></tr></thead>
                 <tbody>
-                    <tr><td>SOC</td><td>0 – 100 %</td><td>Low · Medium · High</td><td><span class="tag tag-input">INPUT</span></td></tr>
-                    <tr><td>Price</td><td>0 – 50 ¢/kWh</td><td>Low · Medium · High</td><td><span class="tag tag-input">INPUT</span></td></tr>
-                    <tr><td>Time</td><td>0 – 24 h</td><td>Short · Medium · Long</td><td><span class="tag tag-input">INPUT</span></td></tr>
-                    <tr><td>Charge Power</td><td>0 – 22 kW</td><td>Low · Medium · High</td><td><span class="tag tag-output">OUTPUT</span></td></tr>
+                    <tr><td>Current Battery State (SOC)</td><td>0 – 100 %</td><td>Low · Medium · High</td><td><span class="tag tag-input">INPUT</span></td></tr>
+                    <tr><td>Live Grid Tariff</td><td>0 – 50 $/kWh</td><td>Low   · Medium · High</td><td><span class="tag tag-input">INPUT</span></td></tr>
+                    <tr><td>Time Until Departure</td><td>0 – 24 h</td><td>Short · Medium · Long</td><td><span class="tag tag-input">INPUT</span></td></tr>
+                    <tr><td>Recommended Power Output</td><td>0 – 22 kW</td><td>Low · Medium · High</td><td><span class="tag tag-output">OUTPUT</span></td></tr>
                 </tbody>
             </table>
         </div>
 
-        <p class="tech-line">Built with Python 3, scikit-fuzzy, NumPy, SciPy, and Flask</p>
+        <p class="tech-line">Engineered with Python, scikit-fuzzy, NumPy, SciPy, Flask and predictive logic.</p>
     </section>
 
     <!-- ═══════ CONTACT ═══════ -->
     <section id="contact" class="section">
-        <h2 class="section-heading">Get In Touch</h2>
+        <h2 class="section-heading">Let's Connect</h2>
+        <p style="color: var(--text-2); margin-top: -24px; margin-bottom: 40px; max-width: 600px; line-height: 1.7;">
+            Ready to revolutionize your charging network? Have questions about our fuzzy-logic engine? Send us a message and the Evora team will get back to you.
+        </p>
 
         <div class="contact-grid">
             <form class="contact-form glass-panel" id="contactForm">
